@@ -4,7 +4,7 @@ import com.abc.model.VendorResponse
 import com.abc.model.rest.DecisionResponse
 import com.abc.model.rest.UserRequest
 
-interface ScoreRepository {
+interface ScoreDAO {
 
     fun saveUserRequest(request: UserRequest)
 

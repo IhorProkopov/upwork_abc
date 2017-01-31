@@ -18,8 +18,8 @@ class EmailAgeService : VendorService {
 
     override fun makeRequest(request: VendorRequest): VendorResponse {
         request as EmailAgeRequest
-        val results = listOf(Results(email = request.email, EAScore = Random().nextInt().toString()))
-        return EmailAgeResponse(query = Query(email = request.email, results = results)) as VendorResponse
+        val results = listOf(Results(email = request.email.data, EAScore = Random().nextInt().toString()))
+        return EmailAgeResponse(query = Query(email = request.email.data, results = results)) as VendorResponse
     }
 
 }
