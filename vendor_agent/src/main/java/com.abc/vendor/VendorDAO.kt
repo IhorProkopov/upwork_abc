@@ -5,7 +5,7 @@ import com.abc.model.VendorResponse
 import com.abc.model.emailage.EmailAgeRequest
 import com.abc.model.emailage.EmailAgeResponse
 
-interface VendorService {
+interface VendorDAO {
 
     fun makeRequest(request: VendorRequest) : VendorResponse
 
