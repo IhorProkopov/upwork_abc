@@ -1,32 +1,24 @@
 package com.abc
 
-import com.abc.model.rest.DecisionResponse
-import com.abc.model.rest.UserResponse
 import com.google.gson.Gson
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.PropertySource
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.*
 import java.util.*
-import java.util.concurrent.ConcurrentHashMap
 
-
-@SpringBootApplication
-@PropertySource("classpath:application.properties")
-open class FraudApplication {
+@Configuration
+@PropertySource("classpath:common.properties")
+open class BaseConfiguration {
 
     @Value("\${kafka.bootstrap.servers}")
     lateinit var bootstrapServers: String
-
-    @Bean
-    open fun decisionMap():ConcurrentHashMap<UUID, UserResponse> = ConcurrentHashMap()
 
     @Bean
     open fun producerConfigs(): Map<String, Any> {
@@ -81,10 +73,6 @@ open class FraudApplication {
     }
 
     @Bean
-    open fun gson() :Gson = Gson()
+    open fun gson() : Gson = Gson()
 
-}
-
-fun main(args: Array<String>) {
-    SpringApplication.run(FraudApplication::class.java)
 }

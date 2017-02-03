@@ -11,7 +11,7 @@ class Receiver {
     @Autowired
     lateinit var gson: Gson
 
-    @KafkaListener(topics = arrayOf("database.decision"))
+    @KafkaListener(topics = arrayOf("\${decision.agent}"))
     fun receiveRequest(message: String) {
         println("received message='$message'")
 
