@@ -6,6 +6,6 @@ import com.abc.model.rest.UserRequest
 
 interface DecisionService {
 
-    fun makeDecision(vendorResponse: VendorResponse): DecisionResponse
+    fun makeDecision(vendorResponses: Array<VendorResponse>): DecisionResponse
 
 }
