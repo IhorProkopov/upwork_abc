@@ -6,12 +6,12 @@ import com.abc.model.emailage.EmailAgeRequest
 import com.abc.model.emailage.EmailAgeResponse
 import com.abc.model.emailage.Query
 import com.abc.model.emailage.Results
-import com.abc.vendor.VendorService
+import com.abc.vendor.VendorDAO
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service("emailage")
-class EmailAgeService : VendorService {
+class EmailAgeDAO : VendorDAO {
 
 //    @Autowired
 //    lateinit var restTemplate: RestTemplate

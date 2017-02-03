@@ -4,11 +4,11 @@ import com.abc.model.VendorRequest
 import com.abc.model.VendorResponse
 import com.abc.model.zumigo.ZumigoRequest
 import com.abc.model.zumigo.ZumigoResponse
-import com.abc.vendor.VendorService
+import com.abc.vendor.VendorDAO
 import org.springframework.stereotype.Service
 
 @Service("zumigo")
-class ZumigoService : VendorService{
+class ZumigoDAO : VendorDAO {
 
     override fun makeRequest(request: VendorRequest): VendorResponse {
         request as ZumigoRequest
