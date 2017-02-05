@@ -1,0 +1,13 @@
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+gradlew
+gradlew.bat
+
+
+### IntelliJ IDEA ###
+.idea
+*.iml
+
+### NetBeans ###
+build/
+gradle/

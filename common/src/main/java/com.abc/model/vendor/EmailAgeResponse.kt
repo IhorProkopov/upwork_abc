@@ -1,11 +1,11 @@
-package com.abc.model.emailage
+package com.abc.model.vendor
 
 import com.abc.model.VendorResponse
 import java.util.*
 
 class EmailAgeResponse (val query: Query = Query(),
                         val responseStatus: ResponseStatus = ResponseStatus(),
-                        uuid: UUID = UUID.randomUUID(), userId: String = "") :VendorResponse(uuid, userId)
+                        uuid: UUID = UUID.randomUUID(), userId: String = "") : VendorResponse(uuid, userId)
 
 data class Query(val email: String = "",
                  val queryType: String = "",

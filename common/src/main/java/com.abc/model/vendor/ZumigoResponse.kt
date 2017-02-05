@@ -1,4 +1,4 @@
-package com.abc.model.zumigo
+package com.abc.model.vendor
 
 import com.abc.model.VendorResponse
 import java.util.*

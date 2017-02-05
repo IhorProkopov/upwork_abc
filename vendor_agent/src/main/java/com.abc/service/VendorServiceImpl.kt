@@ -22,8 +22,8 @@ class VendorServiceImpl : VendorService {
     @Qualifier("zumigo")
     lateinit var zumigoDAO: VendorDAO
 
-    override fun processRequest(request: UserRequest): LinkedList<VendorResponse> =
-            request.serviceType.mapNotNullTo(LinkedList<VendorResponse>()) {
+    override fun processRequest(request: UserRequest): Array<VendorResponse> =
+            request.serviceType.mapNotNullTo(ArrayList<VendorResponse>()) {
                 when (it) {
                     ServiceType.emailage -> if (!request.email.isNullOrEmpty())
                         emailageDAO.makeRequest(EmailAgeRequest(request.email, request.uuid, request.userId)) else null
@@ -31,6 +31,6 @@ class VendorServiceImpl : VendorService {
                         zumigoDAO.makeRequest(ZumigoRequest(request.phoneNumber, request.uuid, request.userId)) else null
                     else -> null
                 }
-            }
+            }.toTypedArray()
 
 }

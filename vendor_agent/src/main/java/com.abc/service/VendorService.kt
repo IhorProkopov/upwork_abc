@@ -6,6 +6,6 @@ import java.util.*
 
 interface VendorService {
 
-    fun processRequest(request: UserRequest): LinkedList<VendorResponse>
+    fun processRequest(request: UserRequest): Array<VendorResponse>
 
 }

@@ -1,6 +1,9 @@
 package com.abc
 
+import com.abc.model.VendorResponse
+import com.abc.adapter.VendorResponseAdapter
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -75,6 +78,7 @@ open class BaseConfiguration {
     }
 
     @Bean
-    open fun gson() : Gson = Gson()
+    open fun gson() : Gson = GsonBuilder()
+            .registerTypeAdapter(Array<VendorResponse>::class.java, VendorResponseAdapter()).create()
 
 }

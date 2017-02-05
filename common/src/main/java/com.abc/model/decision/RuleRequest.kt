@@ -1,8 +1,8 @@
 package com.abc.model.decision
 
 import com.abc.model.VendorResponse
-import com.abc.model.emailage.EmailAgeResponse
-import com.abc.model.zumigo.ZumigoResponse
+import com.abc.model.vendor.EmailAgeResponse
+import com.abc.model.vendor.ZumigoResponse
 
 class RuleRequest(vendorResponses: Array<VendorResponse>) {
 

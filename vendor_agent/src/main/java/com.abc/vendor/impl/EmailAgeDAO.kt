@@ -3,9 +3,9 @@ package com.abc.vendor.impl
 import com.abc.model.VendorRequest
 import com.abc.model.VendorResponse
 import com.abc.model.emailage.EmailAgeRequest
-import com.abc.model.emailage.EmailAgeResponse
-import com.abc.model.emailage.Query
-import com.abc.model.emailage.Results
+import com.abc.model.vendor.EmailAgeResponse
+import com.abc.model.vendor.Query
+import com.abc.model.vendor.Results
 import com.abc.vendor.VendorDAO
 import org.springframework.stereotype.Service
 import java.util.*

@@ -39,6 +39,6 @@ class FraudServiceImpl : FraudService {
     }
 
     tailrec private fun awaitResponse(uuid: UUID): DecisionResponse =
-            if (decisionMap.contains(uuid)) decisionMap.remove(uuid) as DecisionResponse else awaitResponse(uuid)
+            if (decisionMap.containsKey(uuid)) decisionMap.remove(uuid) as DecisionResponse else awaitResponse(uuid)
 
 }
