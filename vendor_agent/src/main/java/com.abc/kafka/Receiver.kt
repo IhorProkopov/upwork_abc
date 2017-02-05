@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component
 @Component
 class Receiver {
 
-    @Value("\${database.vendor.response}")
+    @Value("\${store.vendor.response}")
     lateinit var dbEndpoint:String
 
-    @Value("\${decision.agent}")
+    @Value("\${decision.process}")
     lateinit var decisionEndpoint:String
 
     @Autowired
@@ -26,9 +26,9 @@ class Receiver {
     @Autowired
     lateinit var sender: Sender
 
-    @KafkaListener(topics = arrayOf("database.vendor"))
-    fun receiveVendorResponse(message: String) {
-        println("receiveVendorResponse='$message'")
+    @KafkaListener(topics = arrayOf("\${vendor.interview}"))
+    fun receiveVendorRequest(message: String) {
+        println("receiveVendorRequest='$message'")
         val request = gson.fromJson(message, UserRequest::class.java)
         val res = vendorService.processRequest(request)
         sender.sendMessage(dbEndpoint, gson.toJson(res))

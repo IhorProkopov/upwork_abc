@@ -16,8 +16,11 @@ import java.util.concurrent.ConcurrentHashMap
 @Service
 class FraudServiceImpl : FraudService {
 
-    @Value("\${database.user.request}")
+    @Value("\${store.user.request}")
     private lateinit var dbEndpoint: String
+
+    @Value("\${vendor.interview}")
+    private lateinit var vendorTopic: String
 
     @Autowired
     lateinit var gson: Gson
@@ -34,7 +37,7 @@ class FraudServiceImpl : FraudService {
     override fun check(request: UserRequest): UserResponse {
         val jsonRequest = gson.toJson(request);
         sender.sendMessage(dbEndpoint, jsonRequest)
-        sender.sendMessage("database.vendor", jsonRequest)
+        sender.sendMessage(vendorTopic, jsonRequest)
         return if (request.async) IdResponse(request.uuid) else awaitResponse(request.uuid)
     }
 

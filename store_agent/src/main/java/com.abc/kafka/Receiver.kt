@@ -18,19 +18,19 @@ class Receiver {
     @Autowired
     lateinit var gson: Gson
 
-    @KafkaListener(topics = arrayOf("\${database.user.request}"))
+    @KafkaListener(topics = arrayOf("\${store.user.request}"))
     fun receiveRequest(message: String) {
         println("receiveRequest: $message")
         scoreDAO.saveUserRequest(gson.fromJson(message, UserRequest::class.java))
     }
 
-    @KafkaListener(topics = arrayOf("\${database.vendor.response}"))
+    @KafkaListener(topics = arrayOf("\${store.vendor.response}"))
     fun receiveVendorResponse(message: String) {
         println("receiveVendorResponse: $message")
         scoreDAO.storeVendorResponse(gson.fromJson(message, Array<VendorResponse>::class.java))
     }
 
-    @KafkaListener(topics = arrayOf("\${database.decision}"))
+    @KafkaListener(topics = arrayOf("\${store.decision}"))
     fun receiveDecision(message: String) {
         println("receiveDecision: $message")
         scoreDAO.storeDecision(gson.fromJson(message, DecisionResponse::class.java))

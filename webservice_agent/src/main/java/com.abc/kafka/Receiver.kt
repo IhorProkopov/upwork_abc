@@ -18,7 +18,7 @@ class Receiver {
     @Autowired
     lateinit var decisionMap: ConcurrentHashMap<UUID, UserResponse>
 
-    @KafkaListener(topics = arrayOf("decision.response"))
+    @KafkaListener(topics = arrayOf("\${webservice.decision}"))
     fun receiveDecision(message: String) {
         println("receiveDecision='$message'")
         val decisionResponse = gson.fromJson(message, DecisionResponse::class.java)
