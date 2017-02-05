@@ -6,7 +6,6 @@ import com.abc.model.rest.DecisionResponse
 import com.abc.model.rest.UserRequest
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
-import java.util.concurrent.CountDownLatch
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Component
 
@@ -21,16 +20,19 @@ class Receiver {
 
     @KafkaListener(topics = arrayOf("\${database.user.request}"))
     fun receiveRequest(message: String) {
+        println("receiveRequest: $message")
         scoreDAO.saveUserRequest(gson.fromJson(message, UserRequest::class.java))
     }
 
     @KafkaListener(topics = arrayOf("\${database.vendor.response}"))
     fun receiveVendorResponse(message: String) {
-        scoreDAO.storeVendorResponse(gson.fromJson(message, VendorResponse::class.java))
+        println("receiveVendorResponse: $message")
+        scoreDAO.storeVendorResponse(gson.fromJson(message, Array<VendorResponse>::class.java))
     }
 
     @KafkaListener(topics = arrayOf("\${database.decision}"))
     fun receiveDecision(message: String) {
+        println("receiveDecision: $message")
         scoreDAO.storeDecision(gson.fromJson(message, DecisionResponse::class.java))
     }
 

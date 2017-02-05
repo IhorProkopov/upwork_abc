@@ -8,7 +8,7 @@ interface ScoreDAO {
 
     fun saveUserRequest(request: UserRequest)
 
-    fun storeVendorResponse(vendorResponse: VendorResponse)
+    fun storeVendorResponse(vendorResponse: Array<VendorResponse>)
 
     fun storeDecision(decision: DecisionResponse)
 

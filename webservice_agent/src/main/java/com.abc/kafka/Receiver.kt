@@ -19,7 +19,7 @@ class Receiver {
 
     @KafkaListener(topics = arrayOf("database.decision"))
     fun receiveDecision(message: String) {
-        println("received message='$message'")
+        println("receiveDecision='$message'")
         val decisionResponse = gson.fromJson(message, UserResponse::class.java)
         decisionMap.put(decisionResponse.id, decisionResponse)
     }

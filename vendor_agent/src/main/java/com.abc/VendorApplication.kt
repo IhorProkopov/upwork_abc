@@ -12,5 +12,5 @@ import org.springframework.context.annotation.PropertySource
 open class VendorApplication
 
 fun main(args: Array<String>) {
-    SpringApplication.run(VendorApplication::class)
+    SpringApplication.run(VendorApplication::class.java)
 }

@@ -14,7 +14,7 @@ class Receiver {
 
     @KafkaListener(topics = arrayOf("\${decision.agent}"))
     fun receiveRequest(message: String) {
-        println("received message='$message'")
+        println("receiveRequest='$message'")
         val vendorResponses = gson.fromJson(message, Array<VendorResponse>::class.java)
 
     }

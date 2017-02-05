@@ -8,14 +8,14 @@ import org.springframework.stereotype.Repository
 @Repository
 class ScoreDAOImpl : ScoreDAO {
     override fun saveUserRequest(request: UserRequest) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println("saveUserRequest: $request")
     }
 
-    override fun storeVendorResponse(vendorResponse: VendorResponse) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun storeVendorResponse(vendorResponse: Array<VendorResponse>) {
+        println("storeVendorResponse: $vendorResponse")
     }
 
     override fun storeDecision(decision: DecisionResponse) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println("storeDecision: $decision")
     }
 }

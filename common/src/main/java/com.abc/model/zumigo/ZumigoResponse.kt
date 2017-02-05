@@ -3,11 +3,11 @@ package com.abc.model.zumigo
 import com.abc.model.VendorResponse
 import java.util.*
 
-class ZumigoResponse(val isDeviceTrusted: Boolean,
+class ZumigoResponse(val isDeviceTrusted: Boolean = false,
                      val confidenceRatings: ConfidenceRatings = ConfidenceRatings(),
                      val customerDtls: CustomerDetails = CustomerDetails(),
                      val getLineIdentityResponse: GetLineIdentityResponse = GetLineIdentityResponse(),
-                     uuid: UUID, userId: String) : VendorResponse(uuid, userId)
+                     uuid: UUID = UUID.randomUUID(), userId: String = "") : VendorResponse(uuid, userId)
 
 data class GetLineIdentityResponse(val mdn: String = "",
                                    val trxId: String = "",
