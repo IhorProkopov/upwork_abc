@@ -22,21 +22,15 @@ class VendorServiceImpl : VendorService {
     @Qualifier("zumigo")
     lateinit var zumigoDAO: VendorDAO
 
-    override fun processRequest(request: UserRequest): LinkedList<VendorResponse> {
-        val res = LinkedList<VendorResponse>()
-        for (serviceType in request.serviceType) {
-            val response = when (serviceType) {
-                ServiceType.emailage -> if (!request.email.isNullOrEmpty())
-                    emailageDAO.makeRequest(EmailAgeRequest(request.email, request.uuid)) else null
-                ServiceType.zumigo -> if (!request.phoneNumber.isNullOrEmpty())
-                    zumigoDAO.makeRequest(ZumigoRequest(request.phoneNumber, request.uuid)) else null
-                else -> null
+    override fun processRequest(request: UserRequest): LinkedList<VendorResponse> =
+            request.serviceType.mapNotNullTo(LinkedList<VendorResponse>()) {
+                when (it) {
+                    ServiceType.emailage -> if (!request.email.isNullOrEmpty())
+                        emailageDAO.makeRequest(EmailAgeRequest(request.email, request.uuid, request.userId)) else null
+                    ServiceType.zumigo -> if (!request.phoneNumber.isNullOrEmpty())
+                        zumigoDAO.makeRequest(ZumigoRequest(request.phoneNumber, request.uuid, request.userId)) else null
+                    else -> null
+                }
             }
-            if (response != null) {
-                res.add(response)
-            }
-        }
-        return res
-    }
 
 }

@@ -4,7 +4,7 @@ import com.abc.model.VendorResponse
 import java.util.*
 
 class EmailAgeResponse (val query: Query = Query(), val responseStatus: ResponseStatus = ResponseStatus(),
-                        uuid: UUID) :VendorResponse(uuid)
+                        uuid: UUID, userId: String) :VendorResponse(uuid, userId)
 
 data class Query(val email: String = "",
                  val queryType: String = "",

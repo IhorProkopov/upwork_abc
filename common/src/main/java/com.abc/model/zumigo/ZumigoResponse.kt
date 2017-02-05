@@ -7,7 +7,7 @@ class ZumigoResponse(val isDeviceTrusted: Boolean,
                      val confidenceRatings: ConfidenceRatings = ConfidenceRatings(),
                      val customerDtls: CustomerDetails = CustomerDetails(),
                      val getLineIdentityResponse: GetLineIdentityResponse = GetLineIdentityResponse(),
-                     uuid: UUID) : VendorResponse(uuid)
+                     uuid: UUID, userId: String) : VendorResponse(uuid, userId)
 
 data class GetLineIdentityResponse(val mdn: String = "",
                                    val trxId: String = "",

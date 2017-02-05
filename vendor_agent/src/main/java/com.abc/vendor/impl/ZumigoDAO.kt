@@ -12,7 +12,7 @@ class ZumigoDAO : VendorDAO {
 
     override fun makeRequest(request: VendorRequest): VendorResponse {
         request as ZumigoRequest
-        return ZumigoResponse(isDeviceTrusted = true, uuid = request.uuid)
+        return ZumigoResponse(isDeviceTrusted = true, uuid = request.uuid, userId = request.userId)
     }
 
 }
