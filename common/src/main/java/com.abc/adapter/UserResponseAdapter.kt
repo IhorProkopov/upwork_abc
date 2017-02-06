@@ -4,7 +4,7 @@ import com.abc.model.rest.DecisionResponse
 import com.google.gson.*
 import java.lang.reflect.Type
 
-class UserResponse : JsonSerializer<DecisionResponse>, JsonDeserializer<DecisionResponse> {
+class UserResponseAdapter : JsonSerializer<DecisionResponse>, JsonDeserializer<DecisionResponse> {
 
     override fun serialize(src: DecisionResponse, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
         val res = JsonObject();
