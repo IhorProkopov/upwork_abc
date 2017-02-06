@@ -1,6 +1,5 @@
 package com.abc.kafka;
 
-import com.abc.model.VendorResponse;
 import com.abc.model.rest.UserRequest;
 import com.abc.service.VendorService;
 import com.google.gson.Gson;
