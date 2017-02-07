@@ -35,7 +35,7 @@ public class VendorServiceImpl implements VendorService {
                             null;
                 case zumigo:
                     return StringUtils.isNotBlank(request.getPhoneNumber()) ?
-                            zumigoDAO.makeRequest(new ZumigoRequest(request.getPhoneNumber(), request.getUuid(), request.getUserId())) : null;
+                            zumigoDAO.makeRequest(new ZumigoRequest(request.getUuid(), request.getUserId(), request.getPhoneNumber())) : null;
                 default:
                     return null;
             }
