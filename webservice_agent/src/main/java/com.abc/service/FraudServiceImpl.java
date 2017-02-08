@@ -21,6 +21,9 @@ public class FraudServiceImpl implements FraudService {
     @Value("${vendor.interview}")
     private String vendorTopic;
 
+    @Value("${await.timeout}")
+    private long awaitTimeout;
+
     @Autowired
     private Gson gson;
 
@@ -41,12 +44,19 @@ public class FraudServiceImpl implements FraudService {
         return request.isAsync() ? new DecisionResponse(null, request.getUuid()) : awaitResponse(request.getUuid());
     }
 
+    @Override
+    public DecisionResponse getResult(UUID id) {
+        return awaitResponse(id);
+    }
+
     private DecisionResponse awaitResponse(UUID uuid) {
-        while (true) {
+        long ttl = System.currentTimeMillis() + awaitTimeout;
+        while (System.currentTimeMillis() <= ttl) {
             if (decisionMap.containsKey(uuid)) {
-                return decisionMap.get(uuid);
+                return decisionMap.remove(uuid);
             }
         }
+        return new DecisionResponse(null, uuid);
     }
 
 }
