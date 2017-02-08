@@ -3,9 +3,7 @@ package com.abc.service;
 import com.abc.kafka.Receiver;
 import com.abc.kafka.Sender;
 import com.abc.model.rest.DecisionResponse;
-import com.abc.model.rest.IdResponse;
 import com.abc.model.rest.UserRequest;
-import com.abc.model.rest.UserResponse;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +25,7 @@ public class FraudServiceImpl implements FraudService {
     private Gson gson;
 
     @Autowired
-    private ConcurrentHashMap<UUID, UserResponse> decisionMap;
+    private ConcurrentHashMap<UUID, DecisionResponse> decisionMap;
 
     @Autowired
     private Sender sender;
@@ -36,17 +34,17 @@ public class FraudServiceImpl implements FraudService {
     private Receiver receiver;
 
     @Override
-    public UserResponse check(UserRequest request) {
+    public DecisionResponse check(UserRequest request) {
         String jsonRequest = gson.toJson(request);
         sender.sendMessage(dbEndpoint, jsonRequest);
         sender.sendMessage(vendorTopic, jsonRequest);
-        return request.isAsync() ? new IdResponse(request.getUuid()) : awaitResponse(request.getUuid());
+        return request.isAsync() ? new DecisionResponse(null, request.getUuid()) : awaitResponse(request.getUuid());
     }
 
     private DecisionResponse awaitResponse(UUID uuid) {
         while (true) {
             if (decisionMap.containsKey(uuid)) {
-                return (DecisionResponse) decisionMap.get(uuid);
+                return decisionMap.get(uuid);
             }
         }
     }

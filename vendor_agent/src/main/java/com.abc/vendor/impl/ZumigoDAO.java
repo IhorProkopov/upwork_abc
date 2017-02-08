@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-@Repository
+@Repository("zumigo")
 public class ZumigoDAO implements VendorDAO {
     
     @Override

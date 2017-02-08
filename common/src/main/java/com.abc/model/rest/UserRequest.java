@@ -23,6 +23,10 @@ public class UserRequest {
         this.uuid = uuid;
     }
 
+    public UserRequest() {
+        this.uuid = UUID.randomUUID();
+    }
+
     public String getEmail() {
         return email;
     }

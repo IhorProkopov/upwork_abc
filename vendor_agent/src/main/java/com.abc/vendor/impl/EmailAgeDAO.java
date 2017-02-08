@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Random;
 
-@Repository
+@Repository("emailage")
 public class EmailAgeDAO implements VendorDAO {
 
     @Override

@@ -1,7 +1,7 @@
 package com.abc;
 
 
-import com.abc.model.rest.UserResponse;
+import com.abc.model.rest.DecisionResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -21,17 +21,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebServiceApplication {
 
     @Bean
-    public ConcurrentHashMap<UUID, UserResponse> decisionMap() {
-        return new ConcurrentHashMap<UUID, UserResponse>();
+    public ConcurrentHashMap<UUID, DecisionResponse> decisionMap() {
+        return new ConcurrentHashMap<UUID, DecisionResponse>();
     }
 
     @Bean
     public Docket swagger() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any()).build();
     }
 
     public static void main(String[] args) {

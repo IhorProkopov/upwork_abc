@@ -1,7 +1,6 @@
 package com.abc.kafka;
 
 import com.abc.model.rest.DecisionResponse;
-import com.abc.model.rest.UserResponse;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -17,7 +16,7 @@ public class Receiver {
     private Gson gson;
 
     @Autowired
-    private ConcurrentHashMap<UUID, UserResponse> decisionMap;
+    private ConcurrentHashMap<UUID, DecisionResponse> decisionMap;
 
     @KafkaListener(topics = "${webservice.decision}")
     public void receiveDecision(String message) {
