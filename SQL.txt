@@ -1,0 +1,25 @@
+CREATE DATABASE fraud
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       CONNECTION LIMIT = -1;
+
+CREATE table decision_response (
+	id uuid PRIMARY KEY,
+	score integer
+);
+
+CREATE TABLE vendor_response (
+	id integer PRIMARY KEY,
+	uuid uuid,
+	user_id text
+);
+
+CREATE TABLE user_request (
+	uuid uuid PRIMARY KEY,
+	email text,
+	phone_number text,
+	async bool,
+	user_id text
+);
+

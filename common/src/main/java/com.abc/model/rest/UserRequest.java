@@ -1,18 +1,31 @@
 package com.abc.model.rest;
 
 import com.abc.model.ServiceType;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = UserRequest.TABLE_NAME)
 public class UserRequest {
 
-    private String email;
-    private String phoneNumber;
-    private List<ServiceType> serviceType;
-    private boolean async;
-    private String userId;
+    static final String TABLE_NAME = "user_request";
+
+    @Id
+    @Type(type = "org.hibernate.type.PostgresUUIDType")
     private UUID uuid;
+    @Column
+    private String email;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Transient
+    private List<ServiceType> serviceType;
+    @Column
+    private boolean async;
+    @Column(name = "user_id")
+    private String userId;
 
     public UserRequest(String email, String phoneNumber, List<ServiceType> serviceType, boolean async, String userId, UUID uuid) {
         this.email = email;

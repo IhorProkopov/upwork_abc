@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -19,6 +20,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Import(BaseConfiguration.class)
 @EnableSwagger2
 public class WebServiceApplication {
+
+//    @Bean
+//    public InternalResourceViewResolver internalResourceViewResolver(){
+//        return new InternalResourceViewResolver("/WEB-INF/pages/", ".jsp");
+//    }
 
     @Bean
     public ConcurrentHashMap<UUID, DecisionResponse> decisionMap() {

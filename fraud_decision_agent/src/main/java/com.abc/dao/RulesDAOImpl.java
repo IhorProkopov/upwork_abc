@@ -12,9 +12,9 @@ public class RulesDAOImpl implements RulesDAO {
 
     @Override
     public List<Rule> getUsersRule(String userId) {
-        return newArrayList(new Rule(newArrayList(new Rule.MaxMin(100, 0)), newArrayList("US"), newArrayList("UA"),
-                newArrayList(new Rule.MaxMin(100, 0)), newArrayList(new Rule.MaxMin(100, 0)),
-                newArrayList(new Rule.MaxMin(100, 0)), 100));
+        return newArrayList(new Rule(newArrayList(new Rule.MaxMin(100, -100)), newArrayList(), newArrayList("UA", "PL"),
+                newArrayList(new Rule.MaxMin(100, -100)), newArrayList(new Rule.MaxMin(100, -100)),
+                newArrayList(new Rule.MaxMin(100, -100)), 100));
     }
 
 }
