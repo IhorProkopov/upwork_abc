@@ -19,10 +19,12 @@ public abstract class VendorResponse {
     private UUID uuid = UUID.randomUUID();
     @Column(name = "user_id")
     private int userId;
+    private boolean showVendorResponse;
 
-    public VendorResponse(UUID uuid, int userId) {
+    public VendorResponse(UUID uuid, int userId, boolean showVendorResponse) {
         this.uuid = uuid;
         this.userId = userId;
+        this.showVendorResponse = showVendorResponse;
     }
 
     public VendorResponse() {
@@ -42,5 +44,13 @@ public abstract class VendorResponse {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public boolean isShowVendorResponse() {
+        return showVendorResponse;
+    }
+
+    public void setShowVendorResponse(boolean showVendorResponse) {
+        this.showVendorResponse = showVendorResponse;
     }
 }

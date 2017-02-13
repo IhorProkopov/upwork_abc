@@ -39,7 +39,10 @@ public class VendorServiceImpl implements VendorService {
                 default:
                     return null;
             }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        }).filter(Objects::nonNull).map(venRes -> {
+            venRes.setShowVendorResponse(request.isShowVendorResponse());
+            return venRes;
+        }).collect(Collectors.toList());
         return res.toArray(new VendorResponse[res.size()]);
     }
 

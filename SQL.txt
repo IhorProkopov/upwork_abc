@@ -6,7 +6,9 @@ CREATE DATABASE fraud
 
 CREATE table decision_response (
 	id uuid PRIMARY KEY,
-    score integer
+    score integer,
+    emailage_response text,
+    zumigo_response text
 );
 
 CREATE TABLE vendor_response (
@@ -20,7 +22,8 @@ CREATE TABLE user_request (
 	email text,
 	phone_number text,
 	async bool,
-	userId integer
+	userId integer,
+	show_vendor_response bool
 );
 
 CREATE TABLE users (

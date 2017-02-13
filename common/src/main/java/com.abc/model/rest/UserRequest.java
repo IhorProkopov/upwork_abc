@@ -26,14 +26,18 @@ public class UserRequest {
     private boolean async;
     @Column(name = "user_id")
     private int userId;
+    @Column(name = "show_vendor_response")
+    private boolean showVendorResponse;
 
-    public UserRequest(String email, String phoneNumber, List<ServiceType> serviceType, boolean async, int userId, UUID uuid) {
+    public UserRequest(String email, String phoneNumber, List<ServiceType> serviceType, boolean async, int userId,
+                       UUID uuid, boolean showVendorResponse) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.serviceType = serviceType;
         this.async = async;
         this.userId = userId;
         this.uuid = uuid;
+        this.showVendorResponse = showVendorResponse;
     }
 
     public UserRequest() {
@@ -86,5 +90,13 @@ public class UserRequest {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public boolean isShowVendorResponse() {
+        return showVendorResponse;
+    }
+
+    public void setShowVendorResponse(boolean showVendorResponse) {
+        this.showVendorResponse = showVendorResponse;
     }
 }

@@ -5,9 +5,6 @@ import com.abc.model.VendorResponse;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by Ihor on 07.02.2017.
- */
 public class EmailAgeResponse extends VendorResponse{
 
     private Query query;
@@ -15,7 +12,7 @@ public class EmailAgeResponse extends VendorResponse{
 
 
     public EmailAgeResponse(UUID uuid, int userId, Query query, ResponseStatus responseStatus) {
-        super(uuid, userId);
+        super(uuid, userId, false);
         this.responseStatus = responseStatus;
         this.query = query;
     }
