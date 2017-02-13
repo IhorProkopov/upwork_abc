@@ -18,8 +18,8 @@ public class EmailAgeDAO implements VendorDAO {
     public VendorResponse makeRequest(VendorRequest request) {
         EmailAgeRequest emailAgeRequest = (EmailAgeRequest) request;
         List results = Lists.newArrayList(new EmailAgeResponse.Results(emailAgeRequest.getEmail(), null, null, null,
-                null, null, null, null, null, null,
-                String.valueOf((new Random()).nextInt()), null, null, null, null,
+                null, null, null, null, "UK", null,
+                String.valueOf(20), null, null, null, null,
                 null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null,
                 null, null, null, null, null,

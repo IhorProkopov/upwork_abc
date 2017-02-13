@@ -6,9 +6,6 @@ import com.abc.model.vendor.ZumigoResponse;
 
 import java.util.List;
 
-/**
- * Created by Ihor on 07.02.2017.
- */
 public class RuleRequest {
 
     private int emailageScore;

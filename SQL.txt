@@ -6,13 +6,13 @@ CREATE DATABASE fraud
 
 CREATE table decision_response (
 	id uuid PRIMARY KEY,
-	score integer
+    score integer
 );
 
 CREATE TABLE vendor_response (
 	id integer PRIMARY KEY,
 	uuid uuid,
-	user_id text
+	userId integer
 );
 
 CREATE TABLE user_request (
@@ -20,6 +20,22 @@ CREATE TABLE user_request (
 	email text,
 	phone_number text,
 	async bool,
-	user_id text
+	userId integer
 );
 
+CREATE TABLE users (
+	id integer PRIMARY KEY,
+	email text
+);
+
+CREATE table rules (
+	id integer PRIMARY KEY,
+	userId integer REFERENCES users (id),
+	emailage_score text,
+	emailage_country text,
+    emailage_country_not_eq text,
+    zumigo_fn text,
+    zumigo_ln text,
+    zumigo_adress text,
+    score integer
+);

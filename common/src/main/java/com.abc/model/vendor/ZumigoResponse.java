@@ -13,7 +13,7 @@ public class ZumigoResponse extends VendorResponse {
     private CustomerDetails customerDtls;
     private GetLineIdentityResponse getLineIdentityResponse;
 
-    public ZumigoResponse(UUID uuid, String userId, boolean isDeviceTrusted, ConfidenceRatings confidenceRatings,
+    public ZumigoResponse(UUID uuid, int userId, boolean isDeviceTrusted, ConfidenceRatings confidenceRatings,
                           CustomerDetails customerDtls, GetLineIdentityResponse getLineIdentityResponse) {
         super(uuid, userId);
         this.isDeviceTrusted = isDeviceTrusted;

@@ -5,9 +5,9 @@ import java.util.UUID;
 public abstract class VendorRequest {
 
     private UUID uuid;
-    private String userId;
+    private int userId;
 
-    public VendorRequest(UUID uuid, String userId) {
+    public VendorRequest(UUID uuid, int userId) {
         this.uuid = uuid;
         this.userId = userId;
     }
@@ -20,11 +20,11 @@ public abstract class VendorRequest {
         this.uuid = uuid;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

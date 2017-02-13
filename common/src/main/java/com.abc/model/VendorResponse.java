@@ -18,9 +18,9 @@ public abstract class VendorResponse {
     @Type(type = "org.hibernate.type.PostgresUUIDType")
     private UUID uuid = UUID.randomUUID();
     @Column(name = "user_id")
-    private String userId;
+    private int userId;
 
-    public VendorResponse(UUID uuid, String userId) {
+    public VendorResponse(UUID uuid, int userId) {
         this.uuid = uuid;
         this.userId = userId;
     }
@@ -36,11 +36,11 @@ public abstract class VendorResponse {
         this.uuid = uuid;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

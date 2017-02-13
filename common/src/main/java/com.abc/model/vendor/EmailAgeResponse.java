@@ -14,7 +14,7 @@ public class EmailAgeResponse extends VendorResponse{
      private ResponseStatus responseStatus;
 
 
-    public EmailAgeResponse(UUID uuid, String userId, Query query, ResponseStatus responseStatus) {
+    public EmailAgeResponse(UUID uuid, int userId, Query query, ResponseStatus responseStatus) {
         super(uuid, userId);
         this.responseStatus = responseStatus;
         this.query = query;

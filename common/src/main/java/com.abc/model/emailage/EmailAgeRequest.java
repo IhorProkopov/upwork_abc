@@ -9,7 +9,7 @@ public class EmailAgeRequest extends VendorRequest{
 
     private String email;
 
-    public EmailAgeRequest(String email, UUID uuid, String userId) {
+    public EmailAgeRequest(String email, UUID uuid, int userId) {
         super(uuid, userId);
         this.email = email;
     }

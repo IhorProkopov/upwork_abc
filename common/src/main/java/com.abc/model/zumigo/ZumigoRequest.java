@@ -11,7 +11,7 @@ public class ZumigoRequest extends VendorRequest {
 
     private String requestData;
 
-    public ZumigoRequest(UUID uuid, String userId, String requestData) {
+    public ZumigoRequest(UUID uuid, int userId, String requestData) {
         super(uuid, userId);
         this.requestData = requestData;
     }

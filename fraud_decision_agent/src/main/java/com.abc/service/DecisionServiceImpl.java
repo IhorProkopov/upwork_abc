@@ -20,7 +20,7 @@ public class DecisionServiceImpl implements DecisionService{
 
     @Override
     public DecisionResponse makeDecision(VendorResponse[] vendorResponses) {
-        List<Rule> rules = rulesDao.getUsersRule(vendorResponses[0].getUserId());
+        List<Rule> rules = rulesDao.findByUserId(vendorResponses[0].getUserId());
         RuleRequest ruleRequest = new RuleRequest(vendorResponses);
         return makeDecision(ruleRequest, rules, vendorResponses[0].getUuid());
     }

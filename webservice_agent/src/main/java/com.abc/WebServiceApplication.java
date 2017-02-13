@@ -1,11 +1,12 @@
 package com.abc;
 
-
 import com.abc.model.rest.DecisionResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,8 +18,10 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SpringBootApplication
+@PropertySource("classpath:common.properties")
 @Import(BaseConfiguration.class)
 @EnableSwagger2
+@EnableJpaRepositories("com.abc")
 public class WebServiceApplication {
 
 //    @Bean

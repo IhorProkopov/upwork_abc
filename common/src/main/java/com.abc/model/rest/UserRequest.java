@@ -25,9 +25,9 @@ public class UserRequest {
     @Column
     private boolean async;
     @Column(name = "user_id")
-    private String userId;
+    private int userId;
 
-    public UserRequest(String email, String phoneNumber, List<ServiceType> serviceType, boolean async, String userId, UUID uuid) {
+    public UserRequest(String email, String phoneNumber, List<ServiceType> serviceType, boolean async, int userId, UUID uuid) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.serviceType = serviceType;
@@ -72,11 +72,11 @@ public class UserRequest {
         this.async = async;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
