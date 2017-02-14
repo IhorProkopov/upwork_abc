@@ -12,38 +12,38 @@ import java.util.List;
 //        query = "select * from rules where u.emailAddress = ?1")
 public class Rule {
 
-    static final String TABLE_NAME ="rules";
+    static final String TABLE_NAME = "rules";
 
     private static final Gson GSON = new Gson();
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "user_id")
     private int userId;
     @Column(name = "emailage_score")
-    private String emailageScore;
+    private String emailageScore = "[]";
     @Column(name = "emailage_country")
-    private String emailageCountry;
+    private String emailageCountry = "[]";
     @Column(name = "emailage_country_not_eq")
-    private String emailageCountryNotEQ;
+    private String emailageCountryNotEQ = "[]";
     @Column(name = "zumigo_fn")
-    private String zumigoFN;
+    private String zumigoFN = "[]";
     @Column(name = "zumigo_ln")
-    private String zumigoLN;
+    private String zumigoLN = "[]";
     @Column(name = "zumigo_adress")
-    private String zumigoAdress;
+    private String zumigoAdress = "[]";
     @Column
     private int score;
 
     public Rule(List<MaxMin> emailageScore, List<String> emailageCountry, List<String> emailageCountryNotEQ,
                 List<MaxMin> zumigoFN, List<MaxMin> zumigoLN, List<MaxMin> zumigoAdress, int score) {
-        this.emailageScore = GSON.toJson(emailageScore);
-        this.emailageCountry = GSON.toJson(emailageCountry);
-        this.emailageCountryNotEQ = GSON.toJson(emailageCountryNotEQ);
-        this.zumigoFN = GSON.toJson(zumigoFN);
-        this.zumigoLN = GSON.toJson(zumigoLN);
-        this.zumigoAdress = GSON.toJson(zumigoAdress);
+        this.emailageScore = emailageScore == null ? "[]" : GSON.toJson(emailageScore);
+        this.emailageCountry = emailageCountry == null ? "[]" : GSON.toJson(emailageCountry);
+        this.emailageCountryNotEQ = emailageCountryNotEQ == null ? "[]" : GSON.toJson(emailageCountryNotEQ);
+        this.zumigoFN = zumigoFN == null ? "[]" : GSON.toJson(zumigoFN);
+        this.zumigoLN = zumigoLN == null ? "[]" : GSON.toJson(zumigoLN);
+        this.zumigoAdress = zumigoAdress == null ? "[]" : GSON.toJson(zumigoAdress);
         this.score = score;
     }
 
@@ -60,14 +60,14 @@ public class Rule {
         setScore(ruleDTO.getScore());
     }
 
-    public boolean accept(RuleRequest ruleRequest){
-       return getEmailageScore().stream().anyMatch(it -> it.getMax() >= ruleRequest.getEmailageScore()
-               && it.getMin() <= ruleRequest.getEmailageScore()) &&
-       getEmailageCountry().stream().anyMatch(it -> it.equals(ruleRequest.getEmailageCountry())) &&
-       getEmailageCountryNotEQ().stream().noneMatch(it -> it.equals(ruleRequest.getEmailageCountry())) &&
-       getZumigoFN().stream().anyMatch(it->it.getMax() >= ruleRequest.getZumigoFN() && it.getMin() <= ruleRequest.getZumigoFN()) &&
-       getZumigoLN().stream().anyMatch(it->it.getMax() >= ruleRequest.getZumigoLN() && it.getMin() <= ruleRequest.getZumigoLN()) &&
-       getZumigoAdress().stream().anyMatch(it-> it.getMax() >= ruleRequest.getZumigoAdress() && it.getMin() <= ruleRequest.getZumigoAdress());
+    public boolean accept(RuleRequest ruleRequest) {
+        return (getEmailageScore().isEmpty() || getEmailageScore().stream().anyMatch(it -> it.getMax() >= ruleRequest.getEmailageScore()
+                && it.getMin() <= ruleRequest.getEmailageScore())) &&
+                (getEmailageCountry().isEmpty() || getEmailageCountry().stream().anyMatch(it -> it.equals(ruleRequest.getEmailageCountry()))) &&
+                (getEmailageCountryNotEQ().isEmpty() || getEmailageCountryNotEQ().stream().noneMatch(it -> it.equals(ruleRequest.getEmailageCountry()))) &&
+                (getZumigoFN().isEmpty() || getZumigoFN().stream().anyMatch(it -> it.getMax() >= ruleRequest.getZumigoFN() && it.getMin() <= ruleRequest.getZumigoFN())) &&
+                (getZumigoLN().isEmpty() || getZumigoLN().stream().anyMatch(it -> it.getMax() >= ruleRequest.getZumigoLN() && it.getMin() <= ruleRequest.getZumigoLN())) &&
+                (getZumigoAdress().isEmpty() || getZumigoAdress().stream().anyMatch(it -> it.getMax() >= ruleRequest.getZumigoAdress() && it.getMin() <= ruleRequest.getZumigoAdress()));
     }
 
     public List<MaxMin> getEmailageScore() {
@@ -75,7 +75,7 @@ public class Rule {
     }
 
     public void setEmailageScore(List<MaxMin> emailageScore) {
-        this.emailageScore = GSON.toJson(emailageScore);
+        this.emailageScore = emailageScore == null ? "[]" : GSON.toJson(emailageScore);
     }
 
     public List<String> getEmailageCountry() {
@@ -83,7 +83,7 @@ public class Rule {
     }
 
     public void setEmailageCountry(List<String> emailageCountry) {
-        this.emailageCountry = GSON.toJson(emailageCountry);
+        this.emailageCountry = emailageCountry == null ? "[]" : GSON.toJson(emailageCountry);
     }
 
     public List<String> getEmailageCountryNotEQ() {
@@ -91,7 +91,7 @@ public class Rule {
     }
 
     public void setEmailageCountryNotEQ(List<String> emailageCountryNotEQ) {
-        this.emailageCountryNotEQ = GSON.toJson(emailageCountryNotEQ);
+        this.emailageCountryNotEQ = emailageCountryNotEQ == null ? "[]" : GSON.toJson(emailageCountryNotEQ);
     }
 
     public List<MaxMin> getZumigoFN() {
@@ -99,7 +99,7 @@ public class Rule {
     }
 
     public void setZumigoFN(List<MaxMin> zumigoFN) {
-        this.zumigoFN = GSON.toJson(zumigoFN);
+        this.zumigoFN = zumigoFN == null ? "[]" : GSON.toJson(zumigoFN);
     }
 
     public List<MaxMin> getZumigoLN() {
@@ -107,16 +107,15 @@ public class Rule {
     }
 
     public void setZumigoLN(List<MaxMin> zumigoLN) {
-        this.zumigoLN = GSON.toJson(zumigoLN);
+        this.zumigoLN = zumigoLN == null ? "[]" : GSON.toJson(zumigoLN);
     }
 
-    public List<MaxMin> getZumigoAdress()
-    {
+    public List<MaxMin> getZumigoAdress() {
         return Arrays.asList(GSON.fromJson(zumigoAdress, MaxMin[].class));
     }
 
     public void setZumigoAdress(List<MaxMin> zumigoAdress) {
-        this.zumigoAdress = GSON.toJson(zumigoAdress);
+        this.zumigoAdress = zumigoAdress == null ? "[]" : GSON.toJson(zumigoAdress);
     }
 
     public int getScore() {
@@ -194,7 +193,7 @@ public class Rule {
         this.zumigoAdress = zumigoAdress;
     }
 
-    public static class MaxMin{
+    public static class MaxMin {
 
         private int max;
         private int min;
