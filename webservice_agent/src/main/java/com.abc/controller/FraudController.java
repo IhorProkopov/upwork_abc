@@ -21,11 +21,6 @@ public class FraudController {
     @Autowired
     private DataService dataService;
 
-    @GetMapping("/check")
-    public DecisionResponse check(@RequestParam("id") UUID id) {
-        return fraudService.getResult(id);
-    }
-
     @PostMapping("/check")
     public DecisionResponse check(@RequestBody UserRequest request) {
         return fraudService.check(request);

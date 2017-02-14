@@ -41,12 +41,7 @@ public class FraudServiceImpl implements FraudService {
         String jsonRequest = gson.toJson(request);
         sender.sendMessage(dbEndpoint, jsonRequest);
         sender.sendMessage(vendorTopic, jsonRequest);
-        return request.isAsync() ? new DecisionResponse(null, request.getUuid()) : awaitResponse(request.getUuid());
-    }
-
-    @Override
-    public DecisionResponse getResult(UUID id) {
-        return awaitResponse(id);
+        return awaitResponse(request.getUuid());
     }
 
     private DecisionResponse awaitResponse(UUID uuid) {

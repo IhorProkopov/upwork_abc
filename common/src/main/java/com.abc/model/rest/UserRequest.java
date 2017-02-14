@@ -22,8 +22,6 @@ public class UserRequest {
     private String phoneNumber;
     @Transient
     private List<ServiceType> serviceType;
-    @Column
-    private boolean async;
     @Column(name = "user_id")
     private int userId;
     @Column(name = "show_vendor_response")
@@ -34,7 +32,6 @@ public class UserRequest {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.serviceType = serviceType;
-        this.async = async;
         this.userId = userId;
         this.uuid = uuid;
         this.showVendorResponse = showVendorResponse;
@@ -66,14 +63,6 @@ public class UserRequest {
 
     public void setServiceType(List<ServiceType> serviceType) {
         this.serviceType = serviceType;
-    }
-
-    public boolean isAsync() {
-        return async;
-    }
-
-    public void setAsync(boolean async) {
-        this.async = async;
     }
 
     public int getUserId() {

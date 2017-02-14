@@ -9,6 +9,4 @@ public interface FraudService {
 
     DecisionResponse check(UserRequest request);
 
-    DecisionResponse getResult(UUID id);
-
 }

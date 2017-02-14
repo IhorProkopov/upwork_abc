@@ -21,7 +21,6 @@ CREATE TABLE user_request (
 	uuid uuid PRIMARY KEY,
 	email text,
 	phone_number text,
-	async bool,
 	userId integer,
 	show_vendor_response bool
 );
