@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,25 +28,36 @@ public class VendorServiceImpl implements VendorService {
     @Qualifier("zumigo")
     private VendorDAO zumigoDAO;
 
+    @Autowired
+    private ExecutorService executorService;
+
     @Override
     public VendorResponse[] processRequest(UserRequest request) {
-        List<VendorResponse> res = request.getServiceType().stream().map(st -> {
+        List<Future<VendorResponse>> futures = request.getServiceType().stream().map(st -> {
             switch (st) {
                 case emailage:
                     return StringUtils.isNotBlank(request.getEmail()) ?
-                            emailageDAO.makeRequest(new EmailAgeRequest(request.getEmail(), request.getUuid(), request.getUserId())) :
+                            executorService.submit(() -> emailageDAO.makeRequest(new EmailAgeRequest(request.getEmail(), request.getUuid(), request.getUserId()))) :
                             null;
                 case zumigo:
                     return StringUtils.isNotBlank(request.getPhoneNumber()) ?
-                            zumigoDAO.makeRequest(new ZumigoRequest(request.getUuid(), request.getUserId(), request.getPhoneNumber())) : null;
+                            executorService.submit(() -> zumigoDAO.makeRequest(new ZumigoRequest(request.getUuid(), request.getUserId(), request.getPhoneNumber()))) :
+                            null;
                 default:
                     return null;
             }
-        }).filter(Objects::nonNull).map(venRes -> {
-            venRes.setShowVendorResponse(request.isShowVendorResponse());
-            return venRes;
-        }).collect(Collectors.toList());
-        return res.toArray(new VendorResponse[res.size()]);
+        }).filter(Objects::nonNull).collect(Collectors.toList());
+        VendorResponse[] res = new VendorResponse[futures.size()];
+        for (int x = 0; x < futures.size(); x++) {
+            try {
+                res[x] = futures.get(x).get();
+                res[x].setShowVendorResponse(request.isShowVendorResponse());
+            } catch (InterruptedException | ExecutionException e) {
+                //TODO implement logging
+                e.printStackTrace();
+            }
+        }
+        return res;
     }
 
 
