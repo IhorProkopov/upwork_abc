@@ -5,10 +5,10 @@ import com.abc.model.VendorResponse;
 import java.util.List;
 import java.util.UUID;
 
-public class EmailAgeResponse extends VendorResponse{
+public class EmailAgeResponse extends VendorResponse {
 
     private Query query;
-     private ResponseStatus responseStatus;
+    private ResponseStatus responseStatus;
 
 
     public EmailAgeResponse(UUID uuid, int userId, Query query, ResponseStatus responseStatus) {

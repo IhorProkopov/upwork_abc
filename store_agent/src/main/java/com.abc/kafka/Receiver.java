@@ -4,6 +4,7 @@ import com.abc.dao.DecisionDAO;
 import com.abc.dao.UserRequestDAO;
 import com.abc.dao.VendorDAO;
 import com.abc.model.VendorResponse;
+import com.abc.model.VendorResponseModel;
 import com.abc.model.rest.DecisionResponse;
 import com.abc.model.rest.UserRequest;
 import com.google.common.collect.Lists;
@@ -36,7 +37,10 @@ public class Receiver {
     @KafkaListener(topics = "${store.vendor.response}")
     public void receiveVendorResponse(String message) {
         System.out.println("receiveVendorResponse: " + message);
-        vendorDAO.save(Lists.newArrayList(gson.fromJson(message, VendorResponse[].class)));
+        VendorResponse[] responses = gson.fromJson(message, VendorResponse[].class);
+        for (VendorResponse response : responses){
+            vendorDAO.save(new VendorResponseModel(response));
+        }
     }
 
     @KafkaListener(topics = "${store.decision}")

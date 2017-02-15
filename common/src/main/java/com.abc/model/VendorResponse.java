@@ -1,24 +1,22 @@
 package com.abc.model;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
-@Table(name = VendorResponse.TABLE_NAME)
 public abstract class VendorResponse {
 
     static final String TABLE_NAME = "vendor_response";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Expose
     private int id;
-    @Column
-    @Type(type = "org.hibernate.type.PostgresUUIDType")
+    @Expose
     private UUID uuid = UUID.randomUUID();
-    @Column(name = "user_id")
+    @Expose
     private int userId;
+    @Expose
     private boolean showVendorResponse;
 
     public VendorResponse(UUID uuid, int userId, boolean showVendorResponse) {
