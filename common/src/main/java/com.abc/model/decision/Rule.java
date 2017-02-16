@@ -62,12 +62,17 @@ public class Rule {
     }
 
     public boolean accept(RuleRequest ruleRequest) {
-        return (getEmailageScore().isEmpty() || getEmailageScore().stream().anyMatch(it -> it.getMax() >= ruleRequest.getEmailageScore()
+        return (getEmailageScore().isEmpty() || ruleRequest.getEmailageScore() != null) && (getEmailageScore().isEmpty() || getEmailageScore().stream().anyMatch(it -> it.getMax() >= ruleRequest.getEmailageScore()
                 && it.getMin() <= ruleRequest.getEmailageScore())) &&
+                (getEmailageCountry().isEmpty() || ruleRequest.getEmailageCountry() != null) &&
                 (getEmailageCountry().isEmpty() || getEmailageCountry().stream().anyMatch(it -> it.equals(ruleRequest.getEmailageCountry()))) &&
+                (getEmailageCountryNotEQ().isEmpty() || ruleRequest.getEmailageCountry() != null) &&
                 (getEmailageCountryNotEQ().isEmpty() || getEmailageCountryNotEQ().stream().noneMatch(it -> it.equals(ruleRequest.getEmailageCountry()))) &&
+                (getZumigoFN().isEmpty() || ruleRequest.getZumigoFN() != null) &&
                 (getZumigoFN().isEmpty() || getZumigoFN().stream().anyMatch(it -> it.getMax() >= ruleRequest.getZumigoFN() && it.getMin() <= ruleRequest.getZumigoFN())) &&
+                (getZumigoLN().isEmpty() || ruleRequest.getZumigoLN() != null) &&
                 (getZumigoLN().isEmpty() || getZumigoLN().stream().anyMatch(it -> it.getMax() >= ruleRequest.getZumigoLN() && it.getMin() <= ruleRequest.getZumigoLN())) &&
+                (getZumigoAdress().isEmpty() || ruleRequest.getZumigoAdress() != null) &&
                 (getZumigoAdress().isEmpty() || getZumigoAdress().stream().anyMatch(it -> it.getMax() >= ruleRequest.getZumigoAdress() && it.getMin() <= ruleRequest.getZumigoAdress()));
     }
 

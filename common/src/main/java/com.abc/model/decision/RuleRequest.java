@@ -8,11 +8,11 @@ import java.util.List;
 
 public class RuleRequest {
 
-    private int emailageScore;
+    private Integer emailageScore;
     private String emailageCountry;
-    private int zumigoFN;
-    private int zumigoLN;
-    private int zumigoAdress;
+    private Integer zumigoFN;
+    private Integer zumigoLN;
+    private Integer zumigoAdress;
 
     public RuleRequest(VendorResponse[] vendorResponses){
         for (VendorResponse vendorResponse : vendorResponses) {
@@ -39,7 +39,7 @@ public class RuleRequest {
         this.zumigoAdress = zumigoAdress;
     }
 
-    public int getEmailageScore() {
+    public Integer getEmailageScore() {
         return emailageScore;
     }
 
@@ -55,7 +55,7 @@ public class RuleRequest {
         this.emailageCountry = emailageCountry;
     }
 
-    public int getZumigoFN() {
+    public Integer getZumigoFN() {
         return zumigoFN;
     }
 
@@ -63,7 +63,7 @@ public class RuleRequest {
         this.zumigoFN = zumigoFN;
     }
 
-    public int getZumigoLN() {
+    public Integer getZumigoLN() {
         return zumigoLN;
     }
 
@@ -71,7 +71,7 @@ public class RuleRequest {
         this.zumigoLN = zumigoLN;
     }
 
-    public int getZumigoAdress() {
+    public Integer getZumigoAdress() {
         return zumigoAdress;
     }
 

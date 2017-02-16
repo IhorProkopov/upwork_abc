@@ -2,9 +2,7 @@ package com.abc.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 @Entity(name = User.TABLE_NAME)
@@ -13,11 +11,13 @@ public class User {
     static final String TABLE_NAME = "users";
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(hidden = true)
     private int id;
     @Column
     private String email;
     @Column
+    @ApiModelProperty(hidden = true)
     private OffsetDateTime time = OffsetDateTime.now();
 
     public User(int id, String email) {
