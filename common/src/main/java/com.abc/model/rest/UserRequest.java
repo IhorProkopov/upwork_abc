@@ -1,9 +1,12 @@
 package com.abc.model.rest;
 
 import com.abc.model.ServiceType;
+import com.google.gson.annotations.Expose;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +18,7 @@ public class UserRequest {
 
     @Id
     @Type(type = "org.hibernate.type.PostgresUUIDType")
+    @ApiModelProperty(hidden = true)
     private UUID uuid;
     @Column
     private String email;
@@ -26,6 +30,9 @@ public class UserRequest {
     private int userId;
     @Column(name = "show_vendor_response")
     private boolean showVendorResponse;
+    @Column
+    @ApiModelProperty(hidden = true)
+    private OffsetDateTime time = OffsetDateTime.now();
 
     public UserRequest(String email, String phoneNumber, List<ServiceType> serviceType, boolean async, int userId,
                        UUID uuid, boolean showVendorResponse) {
@@ -87,5 +94,13 @@ public class UserRequest {
 
     public void setShowVendorResponse(boolean showVendorResponse) {
         this.showVendorResponse = showVendorResponse;
+    }
+
+    public OffsetDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(OffsetDateTime time) {
+        this.time = time;
     }
 }

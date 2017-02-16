@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static com.abc.model.rest.DecisionResponse.TABLE_NAME;
@@ -25,9 +26,10 @@ public class DecisionResponse {
     private Integer score;
     @Column(name = "emailage_response")
     private String emailAgeResponse;
-
     @Column(name = "zumigo_response")
     private String zumigoResponse;
+    @Column
+    private OffsetDateTime time = OffsetDateTime.now();
 
     public DecisionResponse(Integer score, UUID id, String emailAgeResponse, String zumigoResponse) {
         this.id = id;
@@ -74,5 +76,13 @@ public class DecisionResponse {
 
     public void setZumigoResponse(String zumigoResponse) {
         this.zumigoResponse = zumigoResponse;
+    }
+
+    public OffsetDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(OffsetDateTime time) {
+        this.time = time;
     }
 }

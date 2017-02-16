@@ -4,12 +4,11 @@ import com.abc.model.rest.RuleDTO;
 import com.google.gson.Gson;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity(name = Rule.TABLE_NAME)
-//@NamedQuery(name = "Rule.findByUserId",
-//        query = "select * from rules where u.emailAddress = ?1")
 public class Rule {
 
     static final String TABLE_NAME = "rules";
@@ -35,6 +34,8 @@ public class Rule {
     private String zumigoAdress = "[]";
     @Column
     private int score;
+    @Column
+    private OffsetDateTime time = OffsetDateTime.now();
 
     public Rule(List<MaxMin> emailageScore, List<String> emailageCountry, List<String> emailageCountryNotEQ,
                 List<MaxMin> zumigoFN, List<MaxMin> zumigoLN, List<MaxMin> zumigoAdress, int score) {
@@ -191,6 +192,14 @@ public class Rule {
 
     public void setZumigoAdress(String zumigoAdress) {
         this.zumigoAdress = zumigoAdress;
+    }
+
+    public OffsetDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(OffsetDateTime time) {
+        this.time = time;
     }
 
     public static class MaxMin {

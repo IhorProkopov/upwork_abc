@@ -33,9 +33,6 @@ public class FraudServiceImpl implements FraudService {
     @Autowired
     private Sender sender;
 
-    @Autowired
-    private Receiver receiver;
-
     @Override
     public DecisionResponse check(UserRequest request) {
         String jsonRequest = gson.toJson(request);

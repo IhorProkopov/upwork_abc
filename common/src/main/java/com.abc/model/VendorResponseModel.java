@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -29,6 +30,8 @@ public class VendorResponseModel {
     private String dataJson;
     @Column
     private String vendor;
+    @Column
+    private OffsetDateTime time = OffsetDateTime.now();
 
     public VendorResponseModel(int id, UUID uuid, int userId, boolean showVendorResponse, String dataJson, String vendor) {
         this.id = id;
@@ -101,5 +104,13 @@ public class VendorResponseModel {
 
     public void setVendor(String vendor) {
         this.vendor = vendor;
+    }
+
+    public OffsetDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(OffsetDateTime time) {
+        this.time = time;
     }
 }

@@ -1,19 +1,24 @@
 package com.abc.model;
 
-import com.abc.model.decision.Rule;
+import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.OffsetDateTime;
 
 @Entity(name = User.TABLE_NAME)
 public class User {
 
-    static final String TABLE_NAME ="users";
+    static final String TABLE_NAME = "users";
 
     @Id
-//    @OneToMany(mappedBy = "user_id", targetEntity = Rule.class)
+    @ApiModelProperty(hidden = true)
     private int id;
     @Column
     private String email;
+    @Column
+    private OffsetDateTime time = OffsetDateTime.now();
 
     public User(int id, String email) {
         this.id = id;
@@ -37,5 +42,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public OffsetDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(OffsetDateTime time) {
+        this.time = time;
     }
 }

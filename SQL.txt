@@ -8,7 +8,8 @@ CREATE table decision_response (
 	id uuid PRIMARY KEY,
     score integer,
     emailage_response text,
-    zumigo_response text
+    zumigo_response text,
+    time timestamptz
 );
 
 CREATE TABLE vendor_response (
@@ -17,7 +18,8 @@ CREATE TABLE vendor_response (
 	userId integer,
 	show_vendor_response bool,
 	data_json text,
-	vendor text
+	vendor text,
+	time timestamptz
 );
 
 CREATE TABLE user_request (
@@ -25,12 +27,14 @@ CREATE TABLE user_request (
 	email text,
 	phone_number text,
 	userId integer,
-	show_vendor_response bool
+	show_vendor_response bool,
+	time timestamptz
 );
 
 CREATE TABLE users (
 	id integer PRIMARY KEY,
-	email text
+	email text,
+	time timestamptz
 );
 
 CREATE table rules (
@@ -42,5 +46,6 @@ CREATE table rules (
     zumigo_fn text,
     zumigo_ln text,
     zumigo_adress text,
-    score integer
+    score integer,
+    time timestamptz
 );
