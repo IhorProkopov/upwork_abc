@@ -8,9 +8,9 @@ import com.abc.model.rest.UserRequest;
 import com.abc.service.DataService;
 import com.abc.service.FraudService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FraudController {

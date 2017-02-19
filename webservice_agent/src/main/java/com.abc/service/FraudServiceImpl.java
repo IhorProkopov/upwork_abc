@@ -1,6 +1,5 @@
 package com.abc.service;
 
-import com.abc.kafka.Receiver;
 import com.abc.kafka.Sender;
 import com.abc.model.rest.DecisionResponse;
 import com.abc.model.rest.UserRequest;

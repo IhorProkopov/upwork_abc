@@ -35,7 +35,7 @@ public class EmailAgeDAO implements VendorDAO {
                 null, null, null));
 
         return (new EmailAgeResponse(request.getUuid(), request.getUserId(), new EmailAgeResponse.Query(((EmailAgeRequest) request).getEmail(), null, 0, null,
-                null, null, results), (EmailAgeResponse.ResponseStatus) null));
+                null, null, results), null));
     }
 
 }

@@ -6,6 +6,8 @@ import com.abc.model.rest.UserRequest;
 import com.abc.model.zumigo.ZumigoRequest;
 import com.abc.vendor.VendorDAO;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class VendorServiceImpl implements VendorService {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     @Qualifier("emailage")
@@ -53,8 +57,7 @@ public class VendorServiceImpl implements VendorService {
                 res[x] = futures.get(x).get();
                 res[x].setShowVendorResponse(request.isShowVendorResponse());
             } catch (InterruptedException | ExecutionException e) {
-                //TODO implement logging
-                e.printStackTrace();
+                log.warn("Cannot get vendor response", e);
             }
         }
         return res;

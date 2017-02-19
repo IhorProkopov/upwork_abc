@@ -1,5 +1,7 @@
 package com.abc.kafka;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -13,18 +15,20 @@ public class Sender {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     public void sendMessage(String topic, String message) {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, message);
         future.addCallback(
                 new ListenableFutureCallback<SendResult<String, String>>() {
                     @Override
                     public void onFailure(Throwable ex) {
-                        System.out.println("Failure");
+                        log.warn("Fail to send request", ex);
                     }
 
                     @Override
                     public void onSuccess(SendResult<String, String> result) {
-                        System.out.println("sent message='" + message + "' with offset=" + result.getRecordMetadata().offset());
+                        log.info("Send message='{}' with offset={}", message, result.getRecordMetadata().offset());
                     }
                 });
     }

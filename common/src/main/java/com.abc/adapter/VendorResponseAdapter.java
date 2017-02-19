@@ -2,6 +2,8 @@ package com.abc.adapter;
 
 import com.abc.model.VendorResponse;
 import com.google.gson.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VendorResponseAdapter implements JsonSerializer<VendorResponse[]>, JsonDeserializer<VendorResponse[]> {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public VendorResponse[] deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -20,7 +24,7 @@ public class VendorResponseAdapter implements JsonSerializer<VendorResponse[]>, 
                 JsonElement element = jsonObj.get("props");
                 res.add(context.deserialize(element, Class.forName("com.abc.model.vendor."+type)));
             } catch (ClassNotFoundException e) {
-                System.out.println("add logs");
+                log.warn("Cannot deserialize vendor response", e);
             }
         }
         return res.toArray(new VendorResponse[res.size()]);
