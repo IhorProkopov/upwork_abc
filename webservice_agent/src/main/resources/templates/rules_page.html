@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Fraud decision test page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+            <form class="form-inline" action="save_rule" method="POST">
+                <div class="form-group">
+                    <label for="emailage_score">Emailage score</label>
+                    <input pattern="([\d]+[:]{1}[\d]+[;]?)*" type="text" id="emailage_score" name="emailage_score" class="form-control mx-sm-3" placeholder="min:max;min:max"/>
+                    <small class="text-muted">
+                        Insert values like: min:max;min:max
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="emailage_country">Emailage country</label>
+                    <input pattern="([\w]{2}[,]?)*" type="text" id="emailage_country" name="emailage_country" class="form-control mx-sm-3" placeholder="XX,XX,XX"/>
+                    <small class="text-muted">
+                        Insert comma separated countries codes
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="emailage_country_not_equals">Emailage country not equals</label>
+                    <input pattern="([\w]{2}[,]?)*" type="text" id="emailage_country_not_equals" name="emailage_country_not_equals" class="form-control mx-sm-3" placeholder="XX,XX,XX"/>
+                    <small class="text-muted">
+                        Insert comma separated countries codes
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="zumigo_fn">Zumigo first name</label>
+                    <input pattern="([\d]+[:]{1}[\d]+[;]?)*" type="text" id="zumigo_fn" name="zumigo_fn" class="form-control mx-sm-3" placeholder="min:max;min:max"/>
+                    <small class="text-muted">
+                        Insert values like: min:max;min:max
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="zumigo_ln">Zumigo last name</label>
+                    <input pattern="([\d]+[:]{1}[\d]+[;]?)*" type="text" id="zumigo_ln" name="zumigo_ln" class="form-control mx-sm-3" placeholder="min:max;min:max"/>
+                    <small class="text-muted">
+                        Insert values like: min:max;min:max
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="zumigo_address">Zumigo address</label>
+                    <input pattern="([\d]+[:]{1}[\d]+[;]?)*" type="text" id="zumigo_address" name="zumigo_address" class="form-control mx-sm-3" placeholder="min:max;min:max"/>
+                    <small class="text-muted">
+                        Insert values like: min:max;min:max
+                    </small>
+                </div>
+                <div>
+                    <label for="user_id">Zumigo address</label>
+                    <select id="user_id" name="user_id">
+                        <option th:each="user : ${users}" th:value="${user}" th:text="${user}">Credit card</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+</html>

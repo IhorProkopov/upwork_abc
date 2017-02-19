@@ -18,6 +18,11 @@
         <module>vendor_agent</module>
         <module>webservice_agent</module>
     </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.4.RELEASE</version>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

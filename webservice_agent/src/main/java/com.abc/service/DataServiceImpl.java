@@ -7,6 +7,9 @@ import com.abc.model.decision.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DataServiceImpl implements DataService {
 
@@ -24,5 +27,10 @@ public class DataServiceImpl implements DataService {
     @Override
     public void addRule(Rule rule) {
         rulesDAO.save(rule);
+    }
+
+    @Override
+    public List<Integer> getUsers() {
+        return userDAO.findAll().stream().map(User::getId).collect(Collectors.toList());
     }
 }

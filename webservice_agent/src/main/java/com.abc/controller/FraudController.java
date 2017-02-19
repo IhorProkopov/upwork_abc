@@ -7,10 +7,16 @@ import com.abc.model.rest.RuleDTO;
 import com.abc.model.rest.UserRequest;
 import com.abc.service.DataService;
 import com.abc.service.FraudService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collections;
+import java.util.List;
 
 @RestController
 public class FraudController {
@@ -37,3 +43,8 @@ public class FraudController {
     }
 
 }
+
+
+
+
+
