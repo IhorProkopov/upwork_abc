@@ -59,6 +59,7 @@ public class Rule {
         setZumigoFN(ruleDTO.getZumigoFN());
         setZumigoLN(ruleDTO.getZumigoLN());
         setScore(ruleDTO.getScore());
+        setUserId(ruleDTO.getUser_id());
     }
 
     public boolean accept(RuleRequest ruleRequest) {
