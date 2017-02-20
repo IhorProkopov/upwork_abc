@@ -38,7 +38,7 @@ public class Rule {
     private OffsetDateTime time = OffsetDateTime.now();
 
     public Rule(List<MaxMin> emailageScore, List<String> emailageCountry, List<String> emailageCountryNotEQ,
-                List<MaxMin> zumigoFN, List<MaxMin> zumigoLN, List<MaxMin> zumigoAdress, int score) {
+                List<MaxMin> zumigoFN, List<MaxMin> zumigoLN, List<MaxMin> zumigoAdress, int score, int userId) {
         this.emailageScore = emailageScore == null ? "[]" : GSON.toJson(emailageScore);
         this.emailageCountry = emailageCountry == null ? "[]" : GSON.toJson(emailageCountry);
         this.emailageCountryNotEQ = emailageCountryNotEQ == null ? "[]" : GSON.toJson(emailageCountryNotEQ);
@@ -46,6 +46,7 @@ public class Rule {
         this.zumigoLN = zumigoLN == null ? "[]" : GSON.toJson(zumigoLN);
         this.zumigoAdress = zumigoAdress == null ? "[]" : GSON.toJson(zumigoAdress);
         this.score = score;
+        this.userId = userId;
     }
 
     public Rule() {

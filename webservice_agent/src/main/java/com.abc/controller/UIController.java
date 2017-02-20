@@ -42,7 +42,8 @@ public class UIController {
                                  @RequestParam("zumigo_fn") String zumigoFn,
                                  @RequestParam("zumigo_ln") String zumigoLn,
                                  @RequestParam("zumigo_address") String zumigoAddress,
-                                 @RequestParam("user_id") Integer userId) {
+                                 @RequestParam("user_id") Integer userId,
+                                 @RequestParam("score") Integer score) {
         try {
             List<Rule.MaxMin> emailageScoreList = StringUtils.isNotBlank(emailageScore) ? parseMaxMin(emailageScore) : Collections.emptyList();
             List<Rule.MaxMin> zumigoFnList = StringUtils.isNotBlank(zumigoFn) ? parseMaxMin(zumigoFn) : Collections.emptyList();
@@ -50,7 +51,7 @@ public class UIController {
             List<Rule.MaxMin> zumigoAddressList = StringUtils.isNotBlank(zumigoAddress) ? parseMaxMin(zumigoAddress) : Collections.emptyList();
             List<String> country = StringUtils.isNotBlank(emailageCountry) ? parseCountry(emailageCountry) : Collections.emptyList();
             List<String> countryNotEquals = StringUtils.isNotBlank(emailageCountryNotEquals) ? parseCountry(emailageCountryNotEquals) : Collections.emptyList();
-            dataService.addRule(new Rule(emailageScoreList, country, countryNotEquals, zumigoFnList, zumigoLnList, zumigoAddressList, userId));
+            dataService.addRule(new Rule(emailageScoreList, country, countryNotEquals, zumigoFnList, zumigoLnList, zumigoAddressList, score, userId));
         } catch (Throwable t) {
             log.warn("Cannot parse data", t);
         }
