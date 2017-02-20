@@ -5,11 +5,12 @@ import com.google.gson.Gson;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity(name = Rule.TABLE_NAME)
-public class Rule {
+public class Rule implements Comparable<Rule> {
 
     static final String TABLE_NAME = "rules";
 
@@ -36,6 +37,8 @@ public class Rule {
     private int score;
     @Column
     private OffsetDateTime time = OffsetDateTime.now();
+    @Column
+    private int rank;
 
     public Rule(List<MaxMin> emailageScore, List<String> emailageCountry, List<String> emailageCountryNotEQ,
                 List<MaxMin> zumigoFN, List<MaxMin> zumigoLN, List<MaxMin> zumigoAdress, int score, int userId) {
@@ -47,6 +50,17 @@ public class Rule {
         this.zumigoAdress = zumigoAdress == null ? "[]" : GSON.toJson(zumigoAdress);
         this.score = score;
         this.userId = userId;
+        setUpRank();
+    }
+
+    //todo when add new vendor do not forget to increase score
+    private void setUpRank() {
+        if (!getEmailageScore().isEmpty() || !getEmailageCountry().isEmpty() || !getEmailageCountryNotEQ().isEmpty()) {
+            rank++;
+        }
+        if (!getZumigoAdress().isEmpty() || !getZumigoFN().isEmpty() || !getZumigoLN().isEmpty()) {
+            rank++;
+        }
     }
 
     public Rule() {
@@ -207,6 +221,19 @@ public class Rule {
 
     public void setTime(OffsetDateTime time) {
         this.time = time;
+    }
+
+    //from bigger to lower
+    @Override
+    public int compareTo(Rule o) {
+        if (o == null) {
+            return -1;
+        }
+        return this.getRank() < o.getRank() ? 1 : this.getRank() > o.getRank() ? -1 : 0;
+    }
+
+    public int getRank() {
+        return rank;
     }
 
     public static class MaxMin {
