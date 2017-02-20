@@ -53,16 +53,6 @@ public class Rule implements Comparable<Rule> {
         setUpRank();
     }
 
-    //todo when add new vendor do not forget to increase score
-    private void setUpRank() {
-        if (!getEmailageScore().isEmpty() || !getEmailageCountry().isEmpty() || !getEmailageCountryNotEQ().isEmpty()) {
-            rank++;
-        }
-        if (!getZumigoAdress().isEmpty() || !getZumigoFN().isEmpty() || !getZumigoLN().isEmpty()) {
-            rank++;
-        }
-    }
-
     public Rule() {
     }
 
@@ -75,6 +65,17 @@ public class Rule implements Comparable<Rule> {
         setZumigoLN(ruleDTO.getZumigoLN());
         setScore(ruleDTO.getScore());
         setUserId(ruleDTO.getUser_id());
+        setUpRank();
+    }
+
+    //todo when add new vendor do not forget to increase score
+    private void setUpRank() {
+        if (!getEmailageScore().isEmpty() || !getEmailageCountry().isEmpty() || !getEmailageCountryNotEQ().isEmpty()) {
+            rank++;
+        }
+        if (!getZumigoAdress().isEmpty() || !getZumigoFN().isEmpty() || !getZumigoLN().isEmpty()) {
+            rank++;
+        }
     }
 
     public boolean accept(RuleRequest ruleRequest) {
