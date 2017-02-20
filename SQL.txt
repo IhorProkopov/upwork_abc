@@ -47,5 +47,6 @@ CREATE table rules (
     zumigo_ln text,
     zumigo_adress text,
     score integer,
-    time timestamptz
+    time timestamptz,
+    rank integer
 );
